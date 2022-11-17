@@ -1,0 +1,9 @@
+[
+  {
+    "flavorType": "self-host-prod",
+    "name": "Self-hosted production release",
+    "environment": "AMP",
+    "rtvPrefixes": [ "01" ],
+    "command": "amp dist --noconfig"
+  }
+]
