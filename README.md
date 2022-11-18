@@ -1,13 +1,13 @@
 # App Html
 
 
-```
+``
 <meta name="runtime-host" content="...">
 <meta name="amp-geo-api" content="...">
 <script async src="https://example.com/amp/v0.js"></script>
 <script async custom-element="amp-carousel" src="https://example.com/amp/v0/amp-carousel-0.1.js"></script>
 
-```
+``
 ```
 <meta name="runtime-host" content="https://example.com/amp">
 
