@@ -18,7 +18,14 @@
     <link href="https://fonts.googleapis.com/css?family=Roboto:300" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
     <link href="https://fonts.gstatic.com" rel="dns-prefetch preconnect">
-    
+    <script async custom-element="amp-consent" src="https://cdn.ampproject.org/v0/amp-consent-0.1.js"></script>
+    <!-- for this example we use `amp-ad` as well as... -->
+    <script async custom-element="amp-ad" src="https://cdn.ampproject.org/v0/amp-ad-0.1.js"></script>
+    <!-- ... `amp-list` together with... -->
+    <script async custom-element="amp-list" src="https://cdn.ampproject.org/v0/amp-list-0.1.js"></script>
+    <!-- ... `amp-mustache`. -->
+    <script async custom-template="amp-mustache" src="https://cdn.ampproject.org/v0/amp-mustache-0.2.js"></script>
+
     <title>iBlog Hotel Website App</title>
 
     <script type="application/ld+json">
@@ -57,7 +64,50 @@
     </script>
 
     <style amp-custom>
-
+    :root {
+      --space-2: 1rem;   /* 16px */
+      --space-3: 1.5rem; /* 24px */
+    }
+    .lightbox {
+      height: 100vh;
+      width: 100vw;
+      background: rgba(0, 0, 0, 0.7);
+      padding: 5% 0;
+    }
+    .lightbox-content {
+      margin: 0 auto;
+      padding: var(--space-2);
+      background: #fff;
+      border-radius: 5px;
+      max-width: 700px;
+      width: 95%;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .message {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }.message > h2,
+    .message > * {
+      margin: var(--space-2) 0;
+      min-width: 200px;
+      text-align: center;
+    }
+    .dismiss-button {
+      position: absolute;
+      right: var(--space-3);
+      top: var(--space-2);
+      cursor: pointer;
+    }
+    #post-consent-ui {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: var(--space-3);
+    }
     :root {
       --color-secondary: #00DCC0;
     }
@@ -97,12 +147,78 @@
     <style amp-boilerplate>body{-webkit-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-moz-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-ms-animation:-amp-start 8s steps(1,end) 0s 1 normal both;animation:-amp-start 8s steps(1,end) 0s 1 normal both}@-webkit-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-moz-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-ms-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-o-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}</style><noscript><style amp-boilerplate>body{-webkit-animation:none;-moz-animation:none;-ms-animation:none;animation:none}</style></noscript>
   </head>
   <body>
-
-   <div align="center">
-
    <h1>Mobile Services</h1>
+   
+  <!-- ## Basic uage -->
+  <!--
+  The [`amp-consent`](/content/amp-dev/documentation/components/reference/amp-consent.md) component allows you to specify the required user consent for this page using the required `consentRequired` flag. A CORS endpoint can be specified via the `checkConsentHref` attribute which will be checked via a POST request. The response should look like this:
 
-   <p>This blog is an open source web browser based on Chromium, which <strong>accelerates web browsing</strong> by automatically loading AMP &amp; MIP web pages, <strong>saves bandwidth</strong> by enabling data compression, and <strong>respects privacy</strong> by blocking ads and tracking scripts.</p>
+  ```json
+  {
+    "consentRequired": boolean (required),
+    "consentStateValue": enum (accepted/rejected/unknown) (optional),
+    "consentString": string (optional),
+    "expireCache": boolean (default false),
+  }
+  ```
+
+  The response will indicate if the element with the id given in `promptUI` will be displayed.
+  `amp-consent` will first check localstorage for an existing consent decision and use it if present. Otherwise it will show the `promptUi`, if configured and `consentRequired` is `true`. If `consentRequired` is set to false, `amp-consent will immediately unblock all elements. 
+  -->
+       <amp-consent id="myConsent" layout="nodisplay">
+        <script type="application/json">{
+          "consentInstanceId": "advanced-consent",
+          "consentRequired": "remote",
+          "checkConsentHref": "/",
+          "promptUI": "consentDialog",
+          "postPromptUI": "post-consent-ui"
+        }</script>
+        <div class="lightbox" id="consentDialog">
+          <div class="lightbox-content">
+            <div class="dismiss-button" role="button" tabindex="0" on="tap:myConsent.dismiss">X</div>
+            <div class="message">
+              <h2>Cookies Consent</h2>
+              <p>This is an important message requiring you to make a choice.</p>
+            </div>
+            <div id="choice">
+              <button on="tap:choice2.show,choice1.hide">Choice 2</button>
+            </div>
+            <div id="choice1" hidden class="message">
+              <p>This is some more information about this choice. Here's a list of items related to this choice.</p>
+              <amp-list height="132" layout="fixed-height" src="https://book.adball.online/json/consent-items.json" binding="no">
+                <template type="amp-mustache">
+                  <li>{{.}}</li>
+                </template>
+              </amp-list>
+              <button on="tap:myConsent.accept">Confirm</button>
+            </div>
+            <div id="choice2" hidden class="message">
+              <p>This is some more information about this choice.</p>
+              <button on="tap:myConsent.reject">Confirm</button>
+            </div>
+          </div>
+        </div>
+        <div id="post-consent-ui">
+          <button on="tap:myConsent.prompt()">Update Consent</button>
+        </div>
+       </amp-consent>
+
+
+
+       <amp-img data-block-on-consent src="https://preview.amp.dev/static/samples/img/landscape_lake_300x201.jpg" width="300" height="201">
+       </amp-img>
+
+  <!--
+  Ads can also be blocked until consent is given, but ad networks can implement own behavior (e.g. default to non-personalized ads without consent, as seen [documented here](https://support.google.com/dfp_premium/answer/7678538#amp-pages) for Doubleclick). Note that you may see the same ad when accepting or rejecting consent for this specific example and that's because the example doesn't use personalized information even when accepting consent.
+
+  Here is an example of `amp-ad` depending on `amp-consent`:
+ -->
+       <amp-ad data-block-on-consent data-slot="/30497360/a4a/a4a_native" height="250" type="doubleclick" width="300">
+      </amp-ad>
+
+
+
+      <p>This blog is an open source web browser based on Chromium, which <strong>accelerates web browsing</strong> by automatically loading AMP &amp; MIP web pages, <strong>saves bandwidth</strong> by enabling data compression, and <strong>respects privacy</strong> by blocking ads and tracking scripts.</p>
       <p>Notable features:
       <ul>
         <li>Automatically loading <a href="https://www.ampproject.org/" target="_blank">AMP</a> &amp; <a href="https://www.mipengine.org/" target="_blank">MIP</a> web pages whenever possible,</li>
@@ -128,10 +244,14 @@
       <p><a href="https://www.google.com/amp/book.adball.online/" target="_blank">Privacy Policy</a></p>
       <p><small>Mobile Hotel provides the <a href="https://developer.chrome.com/multidevice/data-compression" target="_blank">Data Saver</a> functionality out of the box, which is bound to the <a href="https://www.google.com/policies/" target="_blank">Google Terms of Service</a>. You can disable it by removing the <code>--enable-spdy-proxy-auth</code> command line switch in the <i>chrlauncher.ini</i> file.</small></p>
      
+       
+      
 
-      
-      </div>
-      
+
+
+
+
+
   <amp-analytics type="googleanalytics">
       <script type="application/json">
       {
