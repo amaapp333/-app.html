@@ -3,14 +3,14 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width">
-    <meta name="runtime-host" content="https://book.adball.online/amp">
+    <meta name="runtime-host" content="https://pwamp.vercel.app/">
 
     <meta name="google-site-verification" content="         ">
   
     <script async custom-element="amp-carousel" src="https://book.adball.online/amp/v0/amp-carousel-0.1.js"></script>
     <script async custom-element="amp-facebook-page" src="https://cdn.ampproject.org/v0/amp-facebook-page-0.1.js"></script>
     <script async custom-element="amp-analytics" src="https://cdn.ampproject.org/v0/amp-analytics-0.1.js"></script>
-    <script async src="https://cdn.ampproject.org/v0.js"></script>
+    
     <script async custom-element="amp-fx-flying-carpet" src="https://cdn.ampproject.org/v0/amp-fx-flying-carpet-0.1.js"></script>
     <script async custom-element="amp-ad" src="https://cdn.ampproject.org/v0/amp-ad-0.1.js"></script>
     
@@ -21,6 +21,7 @@
     <script async custom-element="amp-list" src="https://cdn.ampproject.org/v0/amp-list-0.1.js"></script>
     <!-- ... `amp-mustache`. -->
     <script async custom-template="amp-mustache" src="https://cdn.ampproject.org/v0/amp-mustache-0.2.js"></script>
+    <script async src="https://cdn.ampproject.org/v0.js"></script>
 
     <title>iBlog Hotel Website App</title>
 
@@ -31,7 +32,7 @@
       "@type": "NewsArticle",
       "mainEntityOfPage": {
         "@type": "WebPage",
-        "@id": "http://www.adball.tech/"
+        "@id": "     "
       },
       "headline": "iBlog News - Accelerate Web Speed",
       "image": {
@@ -50,7 +51,7 @@
         "name": "Maliek News",
         "logo": {
           "@type": "ImageObject",
-          "url": "http://www.google.com/amp/book.adball.online/amp.png",
+          "url": "http://adball.online/amp.png",
           "width": 390,
           "height": 390
         }
@@ -210,13 +211,15 @@
     Tip: Use [`expireCache: true`](/content/amp-dev/documentation/components/reference/amp-consent.md#expireCache), in your response to clear localStorage consent decision if you need to update it for syncing purposes. Additonally, [`onUpdateHref`](/content/amp-dev/documentation/components/reference/amp-consent.md#onupdatehref) can be used when users are managing their consent directly on the page.
 
   -->
+
   <amp-consent id="myUserConsent" layout="nodisplay">
     <script type="application/json">{
       "consentInstanceId": "server-side-consent",
       "consentRequired": "remote",
-      "checkConsentHref": "https://...../documentation/examples/api/get-consent-server-side",
+      "checkConsentHref": "https://amp.dev/documentation/examples/api/get-consent-server-side",
       "promptUI": "myConsentFlow"
     }</script>
+
     <div id="myConsentFlow" class="popupOverlay">
       <div class="consentPopup">
         <div class="dismiss-button" role="button" tabindex="0" on="tap:myUserConsent.dismiss">X</div>
@@ -229,7 +232,7 @@
     <div id="post-consent-ui">
       <button on="tap:myUserConsent.prompt()">Update Consent</button>
     </div>
-  </amp-consent>
+    </amp-consent>
 
       <p>This blog is an open source web browser based on Chromium, which <strong>accelerates web browsing</strong> by automatically loading AMP &amp; MIP web pages, <strong>saves bandwidth</strong> by enabling data compression, and <strong>respects privacy</strong> by blocking ads and tracking scripts.</p>
       <p>Notable features:
