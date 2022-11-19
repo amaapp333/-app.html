@@ -188,52 +188,11 @@
    </head>
   <body>
 
-   <div align="center">
+      <div align="center">
 
-   <h1>Mobile Services</h1>
+      <h1>Mobile Services</h1>
 
    
-  <!-- ## Defining the consent flow -->
-  <!--
-    We define a basic server-side consent flow, similar to [this sample](/content/amp-dev/documentation/examples/documentation/Client_Side_User_Consent_Flow.html). The flow should only trigger when the server responds that `consentRequired` is `true` and there is no `consentStateValue` or `consentString` for this user.
-
-    When a user lands on the AMP page, `amp-consent` will check localstorage for an existing consent state. 
-    If a consent state exists, it will unblock all components. Otherwise, it will wait for the response from `checkConsentHref` (because `consentRequired` is set to 'remote') to determine if consent is required/if there is an existing consent state. If there is an existing consent state, `amp-consent` will use that value and unblock. Otherwise, it will show the `promptUi`.
-
-    A recommended design for sites that can manage their own consent (via external page) is to respond with the following response: 
-    ```json
-    {
-      "consentRequired": true,
-      "consentStateValue": "accepted"/"rejected"/"unknown",
-      "consentString": "example-string"
-    }
-    ```
-    Tip: Use [`expireCache: true`](/content/amp-dev/documentation/components/reference/amp-consent.md#expireCache), in your response to clear localStorage consent decision if you need to update it for syncing purposes. Additonally, [`onUpdateHref`](/content/amp-dev/documentation/components/reference/amp-consent.md#onupdatehref) can be used when users are managing their consent directly on the page.
-
-  -->
-
-  <amp-consent id="myUserConsent" layout="nodisplay">
-    <script type="application/json">{
-      "consentInstanceId": "server-side-consent",
-      "consentRequired": "remote",
-      "checkConsentHref": "https://amp.dev/documentation/examples/api/get-consent-server-side",
-      "promptUI": "myConsentFlow"
-    }</script>
-
-    <div id="myConsentFlow" class="popupOverlay">
-      <div class="consentPopup">
-        <div class="dismiss-button" role="button" tabindex="0" on="tap:myUserConsent.dismiss">X</div>
-        <h2>Headline Cookies</h2>
-        <p>If the server says you have not made a consent decision, we require you to make a choice.</p>
-        <button on="tap:myUserConsent.accept">Accept</button>
-        <button on="tap:myUserConsent.reject">Reject</button>
-      </div>
-    </div>
-    <div id="post-consent-ui">
-      <button on="tap:myUserConsent.prompt()">Update Consent</button>
-    </div>
-    </amp-consent>
-
       <p>This blog is an open source web browser based on Chromium, which <strong>accelerates web browsing</strong> by automatically loading AMP &amp; MIP web pages, <strong>saves bandwidth</strong> by enabling data compression, and <strong>respects privacy</strong> by blocking ads and tracking scripts.</p>
       <p>Notable features:
       <ul>
@@ -261,6 +220,11 @@
       <p><small>Mobile Hotel provides the <a href="https://developer.chrome.com/multidevice/data-compression" target="_blank">Data Saver</a> functionality out of the box, which is bound to the <a href="https://www.google.com/policies/" target="_blank">Google Terms of Service</a>. You can disable it by removing the <code>--enable-spdy-proxy-auth</code> command line switch in the <i>chrlauncher.ini</i> file.</small></p>
      
       </div>
+
+
+
+
+
 
   <amp-analytics type="googleanalytics">
       <script type="application/json">
