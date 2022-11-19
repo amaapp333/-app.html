@@ -14,10 +14,6 @@
     <script async custom-element="amp-fx-flying-carpet" src="https://cdn.ampproject.org/v0/amp-fx-flying-carpet-0.1.js"></script>
     <script async custom-element="amp-ad" src="https://cdn.ampproject.org/v0/amp-ad-0.1.js"></script>
     
-    <link rel="canonical" href="https://www.google.com/amp/">
-    <link href="https://fonts.googleapis.com/css?family=Roboto:300" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
-    <link href="https://fonts.gstatic.com" rel="dns-prefetch preconnect">
     <script async custom-element="amp-consent" src="https://cdn.ampproject.org/v0/amp-consent-0.1.js"></script>
     <!-- for this example we use `amp-ad` as well as... -->
     <script async custom-element="amp-ad" src="https://cdn.ampproject.org/v0/amp-ad-0.1.js"></script>
@@ -35,12 +31,12 @@
       "@type": "NewsArticle",
       "mainEntityOfPage": {
         "@type": "WebPage",
-        "@id": "http://book.adball.online/"
+        "@id": "http://www.adball.tech/"
       },
       "headline": "iBlog News - Accelerate Web Speed",
       "image": {
         "@type": "ImageObject",
-        "url": "http://book.adball.online/ampbrowser.png",
+        "url": "http://www.adball.tech/ampbrowser.png",
         "width": 1299,
         "height": 490
       },
@@ -64,6 +60,7 @@
     </script>
 
     <style amp-custom>
+
     :root {
       --space-2: 1rem;   /* 16px */
       --space-3: 1.5rem; /* 24px */
@@ -144,10 +141,15 @@
         background-color: #0379c3;
       }
     </style>
-    <style amp-boilerplate>body{-webkit-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-moz-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-ms-animation:-amp-start 8s steps(1,end) 0s 1 normal both;animation:-amp-start 8s steps(1,end) 0s 1 normal both}@-webkit-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-moz-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-ms-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-o-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}</style><noscript><style amp-boilerplate>body{-webkit-animation:none;-moz-animation:none;-ms-animation:none;animation:none}</style></noscript>
+
+   <style amp-boilerplate>body{-webkit-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-moz-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-ms-animation:-amp-start 8s steps(1,end) 0s 1 normal both;animation:-amp-start 8s steps(1,end) 0s 1 normal both}@-webkit-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-moz-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-ms-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-o-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}</style><noscript><style amp-boilerplate>body{-webkit-animation:none;-moz-animation:none;-ms-animation:none;animation:none}</style></noscript>
   </head>
   <body>
    <div align="center">
+
+
+   <amp-img data-block-on-consent src="https://preview.amp.dev/static/samples/img/landscape_lake_300x201.jpg" width="300" height="201">
+   </amp-img>
 
    <h1>Mobile Services</h1>
    
@@ -194,7 +196,6 @@
               </amp-list>
               <button on="tap:myConsent.accept">Confirm</button>
             </div>
-
             <div id="choice2" hidden class="message">
               <p>This is some more information about this choice.</p>
               <button on="tap:myConsent.reject">Confirm</button>
@@ -205,22 +206,6 @@
           <button on="tap:myConsent.prompt()">Update Consent</button>
         </div>
        </amp-consent>
-
-
-
-       <amp-img data-block-on-consent src="https://preview.amp.dev/static/samples/img/landscape_lake_300x201.jpg" width="300" height="201">
-       </amp-img>
-
-
-  <!--
-  Ads can also be blocked until consent is given, but ad networks can implement own behavior (e.g. default to non-personalized ads without consent, as seen [documented here](https://support.google.com/dfp_premium/answer/7678538#amp-pages) for Doubleclick). Note that you may see the same ad when accepting or rejecting consent for this specific example and that's because the example doesn't use personalized information even when accepting consent.
-
-  Here is an example of `amp-ad` depending on `amp-consent`:
- -->
-       <amp-ad data-block-on-consent data-slot="/30497360/a4a/a4a_native" height="250" type="doubleclick" width="300">
-      </amp-ad>
-
-
 
       <p>This blog is an open source web browser based on Chromium, which <strong>accelerates web browsing</strong> by automatically loading AMP &amp; MIP web pages, <strong>saves bandwidth</strong> by enabling data compression, and <strong>respects privacy</strong> by blocking ads and tracking scripts.</p>
       <p>Notable features:
@@ -266,6 +251,7 @@
         }
       }
       </script>
-      </amp-analytics>
+    </amp-analytics>
+
   </body>
 </html>
