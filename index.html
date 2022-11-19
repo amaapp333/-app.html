@@ -247,11 +247,12 @@
   <body>
 
    <div align="center">
-
    <h1>Mobile Services</h1>
+  </div>
 
-    
+
   <!-- ## Defining the consent flow -->
+
   <!--
     We define a basic server-side consent flow, similar to [this sample](/content/amp-dev/documentation/examples/documentation/Client_Side_User_Consent_Flow.html). The flow should only trigger when the server responds that `consentRequired` is `true` and there is no `consentStateValue` or `consentString` for this user.
 
@@ -270,65 +271,41 @@
 
   -->
 
-
   <amp-consent id="myUserConsent" layout="nodisplay">
-    <script type="application/json">{
+    <script type="application/json">
+    {
       "consentInstanceId": "server-side-consent",
       "consentRequired": "remote",
-      "checkConsentHref": "https://amp.dev/documentation/examples/api/get-consent-server-side",
+      "checkConsentHref": "https://pwamp.vercel.app/api/get-consent-server-side",
       "promptUI": "myConsentFlow"
-    }</script>
+    }
+    </script>
 
     <div id="myConsentFlow" class="popupOverlay">
       <div class="consentPopup">
         <div class="dismiss-button" role="button" tabindex="0" on="tap:myUserConsent.dismiss">X</div>
-        <h2>Headline Cookies</h2>
+        <h2>Website Consent!</h2>
         <p>If the server says you have not made a consent decision, we require you to make a choice.</p>
+        <p>You can toggle most of the features by right-clicking the ⚡ icon in the top right corner and choosing Options.</p>
+        <p><a class="btn" href="https://github.com/amaapp333/hennessey/releases/download/61/ampbrowser-61-full.zip">Download Mobile Hotels (beta) portable for 64-bit Windows</a></p>
+        <p><a class="btn" href="https://github.com/amaapp333/hennessey/releases/download/61/ampbrowser-61-ubuntu.deb">Download Mobile Hotels 61 (beta) for Ubuntu Linux </a></p>
+        <p><a href="https://www.google.com/amp/book.adball.online/" target="_blank">Privacy Policy</a></p>
+        <p><small>Mobile Hotel provides the <a href="https://developer.chrome.com/multidevice/data-compression" target="_blank">Data Saver</a> functionality out of the box, which is bound to the <a href="https://www.google.com/policies/" target="_blank">Google Terms of Service</a>. You can disable it by removing the <code>--enable-spdy-proxy-auth</code> command line switch in the <i>chrlauncher.ini</i> file.</small></p>
         <button on="tap:myUserConsent.accept">Accept</button>
         <button on="tap:myUserConsent.reject">Reject</button>
       </div>
     </div>
+
     <div id="post-consent-ui">
       <button on="tap:myUserConsent.prompt()">Update Consent</button>
     </div>
     </amp-consent>
 
-   
-
-
-
-
-
-
-      <p>This blog is an open source web browser based on Chromium, which <strong>accelerates web browsing</strong> by automatically loading AMP &amp; MIP web pages, <strong>saves bandwidth</strong> by enabling data compression, and <strong>respects privacy</strong> by blocking ads and tracking scripts.</p>
-      <p>Notable features:
-      <ul>
-        <li>Automatically loading <a href="https://www.ampproject.org/" target="_blank">AMP</a> &amp; <a href="https://www.mipengine.org/" target="_blank">MIP</a> web pages whenever possible,</li>
-        <li>Highlighting Hotels results in Google Search</li>
-        <li>Switching between amp and full-blown HTML pages on demand by clicking the ⚡ icon,</li>
-        <li>Using <a href="https://developers.google.com/amp/cache/" target="_blank">Google AMP Cache</a> for faster loading,</li>
-        <li>Using <a href="https://developer.chrome.com/multidevice/data-compression" target="_blank">Google Data Saver</a> for less data usage,</li>
-        <li>Using Data Saver Lo-Fi mode (no images) on very slow connections,</li>
-        <li>Sending <a href="https://developers.google.com/web/updates/2016/02/save-data" target="_blank">Save-Data</a> request header,</li>
-        <li>Blocking ads and tracking scripts based on URL patterns,</li>
-        <li>Using <a href="https://opensource.googleblog.com/2015/09/introducing-brotli-new-compression.html" target="_blank">Brotli</a> compression,</li>
-        <li>Showing internal pages using Material Design,</li>
-        <li>Using a local New Tab page,</li>
-        <li>Automatically discarding tabs on low memory,</li>
-        <li>Throttling expensive background timers,</li>
-        <li>Fast windows unloading,</li>
-        <li>Enabling experimental web platform, canvas and JS features.</li>
-      </ul>
-
-      <p>You can toggle most of the features by right-clicking the ⚡ icon in the top right corner and choosing Options.</p>
-      <p><a class="btn" href="https://github.com/amaapp333/hennessey/releases/download/61/ampbrowser-61-full.zip">Download Mobile Hotels (beta) portable for 64-bit Windows</a></p>
-      <p><a class="btn" href="https://github.com/amaapp333/hennessey/releases/download/61/ampbrowser-61-ubuntu.deb">Download Mobile Hotels 61 (beta) for Ubuntu Linux </a></p>
-      <p><a href="https://www.google.com/amp/book.adball.online/" target="_blank">Privacy Policy</a></p>
-      <p><small>Mobile Hotel provides the <a href="https://developer.chrome.com/multidevice/data-compression" target="_blank">Data Saver</a> functionality out of the box, which is bound to the <a href="https://www.google.com/policies/" target="_blank">Google Terms of Service</a>. You can disable it by removing the <code>--enable-spdy-proxy-auth</code> command line switch in the <i>chrlauncher.ini</i> file.</small></p>
      
-      </div>
 
-  <amp-analytics type="googleanalytics">
+      
+    
+      <amp-analytics type="googleanalytics">
       <script type="application/json">
       {
         "vars": {
