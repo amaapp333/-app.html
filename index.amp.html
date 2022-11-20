@@ -7,29 +7,91 @@
   <meta name="amp4ads-id" content="vendor=doubleclick,type=impression-id,value=12345">
   <script async src="https://cdn.ampproject.org/amp4ads-v0.js"></script>
   <script async custom-element="amp-analytics" src="https://cdn.ampproject.org/v0/amp-analytics-0.1.js"></script>
+
+
+
+
+
   <style amp-custom>
-    .left {
+    .ads {
       text-align: left;
     }
-    .right {
+    .rating {
       text-align: right;
     }
   </style>
 </head>
 <body>
 
-<div class="left">
-  <amp-img id="img-1" width="150" height="100"
-      src="https://lh3.googleusercontent.com/5rcQ32ml8E5ONp9f9-Rf78IofLb9QjS5_0mqsY1zEFc=w300-h50-no">
-  </amp-img>
+
+
+  <amp-consent id="myConsent" layout="nodisplay">
+        <script type="application/json">{
+          "consentInstanceId": "advanced-consent",
+          "consentRequired": "remote",
+          "checkConsentHref": "/index.amp.html",
+          "promptUI": "consentDialog",
+          "postPromptUI": "post-consent-ui"
+        }</script>
+
+
+        <div class="lightbox" id="consentDialog">
+          <div class="lightbox-content">
+            <div class="dismiss-button" role="button" tabindex="0" on="tap:myConsent.dismiss">X</div>
+            <div class="message">
+              <h2>Consent Cookies</h2>
+              <p>This is an important message requiring you to make a choice.</p>
+            </div>
+            <div id="choice">
+              <button on="tap:choice2.show,choice1.hide">Choice 2</button>
+            </div>
+            <div id="choice1" hidden class="message">
+              <p>This is some more information about this choice. Here's a list of items related to this choice.</p>
+              <amp-list height="132" layout="fixed-height" src="/json/consent-items.json" binding="no">
+                <template type="amp-mustache">
+                  <li>{{.}}</li>
+                </template>
+              </amp-list>
+              <button on="tap:myConsent.accept">Confirm</button>
+            </div>
+            <div id="choice2" hidden class="message">
+              <p>This is some more information about this choice.</p>
+              <button on="tap:myConsent.reject">Confirm</button>
+            </div>
+          </div>
+        </div>
+
+        <div id="post-consent-ui">
+          <button on="tap:myConsent.prompt()">Update Consent</button>
+        </div>
+       </amp-consent>
+
+
+       <div class="rating">
+       <amp-img id="img-1" width="150" height="100"
+      src="    ">
+       </amp-img>
 </div>
-<div class="right">
-  <a href="https://google.com" target="_blank">
+
+
+
+
+
+
+
+
+<div class="ads">
+  <a href="https://adball.tech" target="_blank">
     <amp-img id="img-2" width="150" height="100"
-        src="https://lh3.googleusercontent.com/5rcQ32ml8E5ONp9f9-Rf78IofLb9QjS5_0mqsY1zEFc=w300-h80-no">
+        src="   ">
     </amp-img>
   </a>
 </div>
+
+
+
+
+
 <amp-pixel src="//localhost:8000/api/ping?type=pixel&cid=CLIENT_ID(a)"></amp-pixel>
 <amp-analytics>
   <script type="application/json">
@@ -77,5 +139,6 @@
     }
   </script>
 </amp-analytics>
+<div id="footer">Powered by AMP</div>
 </body>
 </html>
