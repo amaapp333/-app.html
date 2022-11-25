@@ -1,163 +1,76 @@
-<!doctype html>
-<html ⚡4ads lang="en">
+<!DOCTYPE html>
+<html>
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width,minimum-scale=1,initial-scale=1">
-    <style amp4ads-boilerplate>body{visibility:hidden}</style>
-    <meta name="amp4ads-id" content="vendor=doubleclick,type=impression-id,value=12345">
-    <script async src="https://cdn.ampproject.org/amp4ads-v0.js"></script>
-    <script async custom-element="amp-analytics" src="https://cdn.ampproject.org/v0/amp-analytics-0.1.js"></script>
-    <script async custom-element="amp-auto" src="https://www.adball.tech/ads-tag-integration.js"></script>
-    <script async custom-element="amp-auto-ads" src="https://cdn.ampproject.org/v0/amp-auto-ads-0.1.js"></script>
-    <script async custom-element="amp-access" src="https://cdn.ampproject.org/v0/amp-access-0.1.js"></script>
-    <script async custom-element="amp-carousel" src="https://www.adball.tech/amp/v0/amp-carousel-0.1.js"></script>
-    <script async custom-element="amp-facebook-page" src="https://cdn.ampproject.org/v0/amp-facebook-page-0.1.js"></script>
-    <script async custom-element="amp-analytics" src="https://cdn.ampproject.org/v0/amp-analytics-0.1.js"></script> 
-    <script async custom-element="amp-fx-flying-carpet" src="https://cdn.ampproject.org/v0/amp-fx-flying-carpet-0.1.js"></script>
-    <script async custom-element="amp-consent" src="https://cdn.ampproject.org/v0/amp-consent-0.1.js"></script>
-    <script async custom-element="amp-ad" src="https://cdn.ampproject.org/v0/amp-ad-0.1.js"></script>
-    <script async custom-element="amp-list" src="https://cdn.ampproject.org/v0/amp-list-0.1.js"></script>
-    <script async custom-template="amp-mustache" src="https://cdn.ampproject.org/v0/amp-mustache-0.2.js"></script>
-
-
-
-
-
-
-  <style amp-custom>
-    .ads {
-      text-align: left;
-    }
-    .rating {
-      text-align: right;
-    }
-
-
-
-
-
-
-
-  </style>
-</head>
-<body>
-
-
-
-  <amp-consent id="myConsent" layout="nodisplay">
-        <script type="application/json">{
-          "consentInstanceId": "advanced-consent",
-          "consentRequired": "remote",
-          "checkConsentHref": "/index.amp.html",
-          "promptUI": "consentDialog",
-          "postPromptUI": "post-consent-ui"
-        }</script>
-
-
-        <div class="lightbox" id="consentDialog">
-          <div class="lightbox-content">
-            <div class="dismiss-button" role="button" tabindex="0" on="tap:myConsent.dismiss">X</div>
-            <div class="message">
-              <h2>Consent Cookies</h2>
-              <p>This is an important message requiring you to make a choice.</p>
-            </div>
-            <div id="choice">
-              <button on="tap:choice2.show,choice1.hide">Choice 2</button>
-            </div>
-            <div id="choice1" hidden class="message">
-              <p>This is some more information about this choice. Here's a list of items related to this choice.</p>
-              <amp-list height="132" layout="fixed-height" src="/json/consent-items.json" binding="no">
-                <template type="amp-mustache">
-                  <li>{{.}}</li>
-                </template>
-              </amp-list>
-              <button on="tap:myConsent.accept">Confirm</button>
-            </div>
-            <div id="choice2" hidden class="message">
-              <p>This is some more information about this choice.</p>
-              <button on="tap:myConsent.reject">Confirm</button>
-            </div>
-          </div>
-        </div>
-
-        <div id="post-consent-ui">
-          <button on="tap:myConsent.prompt()">Update Consent</button>
-        </div>
-       </amp-consent>
-
-
-       <div class="rating">
-       <amp-img id="img-1" width="150" height="100"
-      src="    ">
-       </amp-img>
-       </div>
-
-
-
-
-
-
-
-
-<div class="ads">
-  <a href="https://adball.tech" target="_blank">
-    <amp-img id="img-2" width="150" height="100"
-        src="   ">
-    </amp-img>
-  </a>
-</div>
-
-
-
-
-
-<amp-pixel src="//localhost:8000/api/ping?type=pixel&cid=CLIENT_ID(a)"></amp-pixel>
-<amp-analytics>
-  <script type="application/json">
-    {
-      "requests": {
-        "visibility": "/api/ping?type=${type}?cid=CLIENT_ID(a)&elementId=${elementId}&elementX=${elementX}&elementY=${elementY}&elementWidth=${elementWidth}&elementHeight=${elementHeight}&totalTime=${totalTime}&totalVisibleTime=${totalVisibleTime}&maxContinuousVisibleTime=${maxContinuousVisibleTime}&loadTimeVisibility=${loadTimeVisibility}&backgrounded=${backgrounded}&backgroundedAtStart=${backgroundedAtStart}&firstSeenTime=${firstSeenTime}&lastSeenTime=${lastSeenTime}&firstVisibleTime=${firstVisibleTime}&lastVisibleTime=${lastVisibleTime}&minVisiblePercentage=${minVisiblePercentage}&maxVisiblePercentage=${maxVisiblePercentage}&intersectionRatio=${intersectionRatio}&scrollHeight=${scrollHeight}&scrollWidth=${scrollWidth}",
-        "activeview": "/activeview?id=ampim&d=${elementWidth},${elementHeight}&bs=${viewportWidth},${viewportHeight}"
-      },
-      "triggers": {
-        "visible": {
-          "on": "visible",
-          "request": "visibility",
-          "vars": { "type": "visible" }
-        },
-        "rootVisible": {
-          "on": "visible",
-          "request": "visibility",
-          "visibilitySpec": {
-            "selector": ":root",
-            "visiblePercentageMin": 0
-          },
-          "vars": { "type": "rootVisible" }
-        },
-        "imgVisible": {
-          "on": "visible",
-          "request": "visibility",
-          "visibilitySpec": {
-            "selector": "#img-2",
-            "selectionMethod": "scope",
-            "visiblePercentageMin": 0
-          },
-          "vars": { "type": "img2Visible" }
-        },
-        "activeview": {
-          "on": "visible",
-          "request": "activeview",
-          "visibilitySpec": {
-            "visiblePercentageMin": 50,
-            "selector": ":root",
-            "waitFor": "ini-load",
-            "totalTimeMin": 1000
-          }
+    <meta charset="utf-8" />
+    <meta name="format-detection" content="telephone=no" />
+    <!-- WARNING: for iOS 7, remove the width=device-width and height=device-height attributes. See https://issues.apache.org/jira/browse/CB-4323 -->
+    <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" />
+    <meta name="msapplication-tap-highlight" content="no" />
+    <title>banner demo</title>
+    <style>
+        .bodyStyle{
+            font-size: 32px;
         }
-      }
+    </style>
+</head>
+<body >
+<div class="bodyStyle">
+    <h1>demo</h1>
+    <lu>
+        <li><a href="javascript:admob.cacheInterstitial();">load Interstitial</a></li>
+        <br/>
+        <li><a href="javascript:showInterstitial();">show Interstitial</a></li>
+        <br/>
+        <li><a href="javascript:showTestBanner();">show test banner</a></li>
+        <br/>
+        <li><a href="javascript:admob.showBannerAbsolute(admob.BannerSize.BANNER,0,70);">banner 1</a></li>
+        <br/>
+        <li><a href="javascript:admob.showBannerAbsolute(admob.BannerSize.BANNER,30,70);">banner 2</a></li>
+        <br/>
+        <li><a href="javascript:admob.showBanner(admob.BannerSize.BANNER,admob.Position.BOTTOM_CENTER,null)">banner 3</a></li>
+        <br/>
+        <li><a href="javascript:admob.showBanner(admob.BannerSize.BANNER,admob.Position.BOTTOM_APP,null)">banner 4</a></li>
+        <br/>
+        <li><a href="javascript:admob.hideBanner()">hide banner</a></li>
+    </lu>
+
+</div>
+ <div id="alertdiv"/>
+<script type="text/javascript" src="cordova.js"></script>
+<script type="text/javascript">
+function showTestBanner(){
+ 		var admobParam=new  admob.Params();
+        //admobParam.extra={'keyword':"admob phonegame"};
+        //admobParam.isForChild=true;
+        admobParam.isTesting=true;
+        admob.showBanner(admob.BannerSize.BANNER,admob.Position.TOP_CENTER,admobParam);
+}
+    function showInterstitial(){
+        admob.isInterstitialReady(function(isReady){
+            if(isReady){
+                admob.showInterstitial();
+            }
+        });
     }
-  </script>
-</amp-analytics>
-<div id="footer">Powered by AMP</div>
+    function onInterstitialReceive (message) {
+        alert(message.type+" ,you can show it now");
+        //admob.showInterstitial();//show it when received
+    }
+    function onReceiveFail (message) {
+     	var msg=admob.Error[message.data];
+        if(msg==undefined){
+           msg=message.data;
+        }
+        document.getElementById("alertdiv").innerHTML="load fail: "+message.type+"  "+msg;
+    }
+    function onDeviceReady() {
+    	admob.initAdmob("ca-app-pub-3940256099942544/2934735716","ca-app-pub-3940256099942544/4411468910");
+        document.addEventListener(admob.Event.onInterstitialReceive, onInterstitialReceive, false);
+        document.addEventListener(admob.Event.onInterstitialFailedReceive,onReceiveFail, false);
+        document.addEventListener(admob.Event.onBannerFailedReceive,onReceiveFail, false);
+    }
+
+    document.addEventListener('deviceready',onDeviceReady, false);
+</script>
 </body>
 </html>
